@@ -3,139 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSBR Operating System | Archetype Terminal</title>
+    <title>AGENT Protocol | NSBR Engine</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
-        :root { --accent-color: #00ffaa; --accent-glow: rgba(0, 255, 170, 0.2); }
-        body { font-family: 'Inter', sans-serif; background-color: #030504; }
-        .terminal-container { max-width: 1100px; margin: 0 auto; padding: 8rem 5% 5rem; }
-        
-        /* Заголовок в стиле Спецслужб */
-        .system-header { border-left: 3px solid var(--accent-color); padding-left: 2rem; margin-bottom: 5rem; }
-        .system-header h1 { font-family: 'Space Grotesk'; font-size: 4.5rem; letter-spacing: -2px; line-height: 0.9; margin: 1rem 0; }
-        .system-status { font-family: 'JetBrains Mono'; color: var(--accent-color); font-size: 0.9rem; text-transform: uppercase; }
+        :root { 
+            --accent-color: #00ffaa; 
+            --accent-glow: rgba(0, 255, 170, 0.25);
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
 
-        /* Сетка модулей */
-        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 6rem; }
-        .module-card { 
-            background: rgba(255,255,255,0.02); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            padding: 2rem; 
-            transition: 0.3s;
-            position: relative;
+        body { background-color: #030504; color: #ededed; overflow-x: hidden; }
+
+        /* HERO SECTION */
+        .hero-product { 
+            padding: 12rem 5% 6rem; 
+            text-align: center; 
+            position: relative; 
+        }
+        .hero-product h1 { 
+            font-family: 'Space Grotesk'; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            line-height: 0.9; 
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            background: linear-gradient(180deg, #fff 0%, #00ffaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status-bar { 
+            font-family: 'JetBrains Mono'; 
+            color: var(--accent-color); 
+            font-size: 0.8rem; 
+            letter-spacing: 2px;
+            border: 1px solid var(--accent-glow);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(0, 255, 170, 0.05);
+        }
+
+        /* MEDIA SHOWCASE */
+        .showcase-container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .main-video { 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            background: #000; 
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.8), 0 0 40px var(--accent-glow);
             overflow: hidden;
+            margin-bottom: 2rem;
         }
-        .module-card:hover { border-color: var(--accent-glow); background: rgba(0, 255, 170, 0.03); transform: translateY(-5px); }
-        .module-card h3 { font-family: 'Space Grotesk'; font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent-color); }
-        .module-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
-        .module-tag { font-family: 'JetBrains Mono'; font-size: 0.7rem; opacity: 0.4; display: block; margin-bottom: 0.5rem; }
+        .main-video iframe { width: 100%; height: 100%; border: none; }
 
-        /* Философия Medbay */
-        .medbay-section { 
-            background: linear-gradient(90deg, rgba(0,255,170,0.05) 0%, transparent 100%); 
-            padding: 4rem; border: 1px solid var(--accent-glow); margin: 6rem 0; 
+        .screenshot-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 1.5rem;
         }
-        .medbay-content h2 { font-family: 'Space Grotesk'; font-size: 2.5rem; margin-bottom: 1.5rem; }
-        
-        /* Кнопка покупки */
-        .cta-box { text-align: center; background: #00ffaa; color: #000; padding: 4rem; border-radius: 4px; margin-top: 4rem; box-shadow: 0 0 50px rgba(0, 255, 170, 0.2); }
-        .cta-box h2 { font-family: 'Space Grotesk'; font-size: 2rem; margin-bottom: 1rem; }
-        .btn-black { background: #000; color: #00ffaa; padding: 1rem 3rem; text-decoration: none; font-weight: bold; font-family: 'Space Grotesk'; display: inline-block; margin-top: 1.5rem; transition: 0.3s; }
-        .btn-black:hover { opacity: 0.8; transform: scale(1.05); }
+        .screen-card { 
+            aspect-ratio: 16 / 10; 
+            background: var(--card-bg); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.8rem;
+            transition: 0.4s;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+        .screen-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
+
+        /* FEATURES SECTION */
+        .features-section { padding: 8rem 5%; max-width: 1200px; margin: 0 auto; }
+        .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .feat-item h3 { font-family: 'Space Grotesk'; font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
+        .feat-item p { color: var(--text-muted); line-height: 1.6; font-size: 1rem; }
+        .feat-icon { color: var(--accent-color); font-family: 'JetBrains Mono'; margin-bottom: 1rem; display: block; font-weight: bold; }
+
+        /* FLOATING BUY BAR (FOR MOBILE & DESKTOP) */
+        .buy-bar { 
+            position: sticky; bottom: 2rem; 
+            max-width: 600px; margin: 4rem auto; 
+            background: rgba(10, 15, 12, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.5rem 2.5rem;
+            border-radius: 100px;
+            border: 1px solid var(--accent-glow);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .buy-bar .price-tag { font-family: 'Space Grotesk'; font-size: 1.8rem; font-weight: 700; }
+        .btn-launch { 
+            background: var(--accent-color); 
+            color: #000; 
+            padding: 1rem 2.5rem; 
+            border-radius: 50px; 
+            font-family: 'Space Grotesk'; 
+            font-weight: 700; 
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-launch:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--accent-glow); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-product { padding-top: 8rem; }
+            .buy-bar { width: 90%; padding: 1rem 1.5rem; bottom: 1rem; }
+            .buy-bar .price-tag { font-size: 1.4rem; }
+            .btn-launch { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+        }
     </style>
 </head>
-
 <body class="theme-cyber">
     <div class="noise"></div>
 
     <nav class="glass-nav">
         <div class="logo">ARCHETYPE.</div>
         <ul class="nav-links">
-            <li><a href="index.html">← RETURN_TO_HUB</a></li>
+            <li><a href="index.html">← TERMINAL_HUB</a></li>
         </ul>
     </nav>
 
-    <div class="terminal-container">
-        <header class="system-header">
-            <span class="system-status">System Status: v26.1 Online // SECURE_ACCESS</span>
-            <h1>NSBR:<br>Realism Engine</h1>
-            <p style="max-width: 600px; color: var(--text-muted); font-size: 1.2rem; margin-top: 1.5rem;">
-                The high-tech life manager that turns your discipline into a tactical operation. 
-                Built on Google Sheets + Apps Script for Agents fighting the Syndicate.
+    <main>
+        <section class="hero-product">
+            <span class="status-bar">DEPLOYMENT READY: v26.1</span>
+            <h1>AGENT<br>PROTOCOL</h1>
+            <p style="max-width: 650px; margin: 0 auto; color: var(--text-muted); font-size: 1.2rem;">
+                A high-stakes life management environment. Stop playing on autopilot. 
+                Deploy the NSBR engine to master your resources, skills, and operations.
             </p>
-        </header>
+        </section>
 
-        <section class="module-grid">
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_01 ]</span>
-                <h3>START_TERMINAL</h3>
-                <p>Security gateway with password protection. Displays your current streak, rank, and daily radio transmissions.</p>
+        <section class="showcase-container">
+            <div class="main-video">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&loop=1" title="AGENT Protocol Demo"></iframe>
             </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_02 ]</span>
-                <h3>COMMAND_HQ</h3>
-                <p>Track your rank from Cadet to Director. Manage DEFCON levels and activate critical "Ghost" or "Medbay" protocols.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_03 ]</span>
-                <h3>DAILY_OPS</h3>
-                <p>Your tactical front line. Scripts generate your mission list at midnight based on your master schedule. XP is earned instantly.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_04 ]</span>
-                <h3>GLOBAL_MISSIONS</h3>
-                <p>Story-driven operations. Complete 3 tactical tasks to damage the Syndicate boss and earn high-value rewards.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_05 ]</span>
-                <h3>WAR_ROOM</h3>
-                <p>Tactical HUD visualizing your war against the Syndicate. See real-time progress on dismantling enemy infrastructure.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_06 ]</span>
-                <h3>SKILL_MATRIX</h3>
-                <p>14 core attributes (Strength, English, Literature). Beware of "Atrophy" — skills degrade if not trained for 7 days.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_07 ]</span>
-                <h3>OFFSHORE_BANK</h3>
-                <p>Complete financial logging. Earn Dm currency to unlock real-life rewards or trigger system protection protocols.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_08 ]</span>
-                <h3>SHADOW_ARENA</h3>
-                <p>AI-simulated combat against rival agents. Victory requires passing the "Physical Protocol" before the final calculation.</p>
-            </div>
-            <div class="module-card">
-                <span class="module-tag">[ MODULE_09 ]</span>
-                <h3>INTEL_ARCHIVE</h3>
-                <p>Database of your weekly reflections (Interrogations) and encrypted motivational transmissions.</p>
+            <div class="screenshot-grid">
+                <div class="screen-card">[ INTERFACE_PREVIEW_01 ]</div>
+                <div class="screen-card">[ SKILL_MATRIX_VIEW ]</div>
+                <div class="screen-card">[ FINANCIAL_OPERATIONS ]</div>
             </div>
         </section>
 
-        <section class="medbay-section">
-            <div class="medbay-content">
-                <span class="system-status" style="color: #fff;">SPECIAL PATCH V26.1</span>
-                <h2>The Medbay Philosophy</h2>
-                <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 800px;">
-                    We recognize that an Agent is human, not a machine. Activating the Medbay Protocol transforms the aggressive tracker into a supportive assistant, replacing combat missions with recovery tasks while preserving your progress.
-                </p>
+        <section class="features-section">
+            <div class="feat-grid">
+                <div class="feat-item">
+                    <span class="feat-icon">01_REALISM</span>
+                    <h3>No Steps Back</h3>
+                    <p>Unlike casual planners, AGENT Protocol uses the NSBR engine. No random bonuses. Only real "Proof of Work" earns you XP and Ranks.</p>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-icon">02_SYNDICATE</span>
+                    <h3>Strategic Warfare</h3>
+                    <p>Your life is a battlefield. Track your progress against the Syndicate in the War Room. Visualize your wins through infrastructure destruction.</p>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-icon">03_ATROPHY</span>
+                    <h3>Skill Degredation</h3>
+                    <p>Real skills fade. If you stop training your "Strength" or "English" modules for 7 days, the system triggers atrophy. Stay sharp.</p>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-icon">04_MEDBAY</span>
+                    <h3>Human Resilience</h3>
+                    <p>Feeling sick? Activate Medbay Protocol. The system shifts from aggressive tracking to recovery mode, protecting your streaks while you heal.</p>
+                </div>
             </div>
         </section>
 
-        <div class="cta-box">
-            <h2>READY TO INITIALIZE NSBR?</h2>
-            <p>Deploy the most advanced RPG life-management system ever built for Google Sheets.</p>
-            <a href="#" class="btn-black">PURCHASE PROTOCOL — $49</a>
+        <div class="buy-bar">
+            <div class="price-info">
+                <span style="display:block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Full Access Code</span>
+                <span class="price-tag">$49.00</span>
+            </div>
+            <a href="https://lava.top/your-product-link" class="btn-launch">INITIALIZE_ACCESS</a>
         </div>
-    </div>
 
-    <footer>
-        <p style="text-align: center; padding: 4rem; opacity: 0.4; font-family: 'JetBrains Mono'; font-size: 0.8rem;">
-            [ ARCHETYPE_HQ // NO_STEPS_BACK_REALISM ]
-        </p>
+    </main>
+
+    <footer style="text-align: center; padding-bottom: 6rem; opacity: 0.3; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
+        [ ARCHETYPE HQ // SECURE TERMINAL // NO_STEPS_BACK ]
     </footer>
 </body>
 </html>

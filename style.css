@@ -1,0 +1,351 @@
+/* Базовые переменные и настройки */
+:root {
+    --bg-color: #030305;
+    --text-main: #ededed;
+    --text-muted: #8a8a93;
+    --accent-glow: rgba(255, 255, 255, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Заголовки в стиле Tech/Y2K */
+h1, h2, h3, .logo, .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Эффект шума */
+.noise {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png');
+}
+
+/* Стеклянная навигация */
+.glass-nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(3, 3, 5, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+/* Главный экран */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 5%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: 5.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #666666 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Фоновое свечение на главном экране */
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Кнопки */
+.btn-primary {
+    text-decoration: none;
+    background: #fff;
+    color: #000;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Блок ЛОРА / Философии */
+.philosophy {
+    padding: 8rem 5%;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.philosophy-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.lore-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.lore-text p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.lore-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    padding-left: 3rem;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.2);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Витрина */
+.showcase {
+    padding: 5rem 5% 10rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+/* Карточки с базой для "Хамелеона" */
+.card {
+    background: #0a0a0c;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+/* Невидимая рамка, которая загорается при наведении */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: border-color 0.4s ease;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background: #111114;
+}
+
+/* Специфичные эффекты при наведении для разных архетипов */
+.card.theme-rpg:hover::after { border-color: rgba(212, 175, 55, 0.4); /* Золотоватый отблеск */ }
+.card.theme-cyber:hover::after { border-color: rgba(0, 255, 170, 0.3); /* Кибер-зеленый отблеск */ }
+
+.card-image {
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.placeholder-rpg { background: linear-gradient(45deg, #1a1515, #2a201c); }
+.placeholder-cyber { background: linear-gradient(45deg, #0a1118, #0d1f22); }
+
+.card-content {
+    padding: 2rem;
+}
+
+.category {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    min-height: 60px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+}
+
+.btn-buy {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s;
+}
+
+.btn-buy:hover {
+    opacity: 0.7;
+}
+
+/* Подвал */
+footer {
+    padding: 4rem 5%;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer p { color: var(--text-muted); font-size: 0.9rem; }
+.copyright { font-size: 0.8rem; margin-top: 2rem; opacity: 0.5; }
+
+/* Адаптивность для мобильных */
+@media (max-width: 900px) {
+    .hero h1 { font-size: 3.5rem; }
+    .philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .lore-stats { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-left: 0; padding-top: 2rem; flex-direction: row; justify-content: space-between; }
+    .nav-links { display: none; /* Для телефонов позже сделаем меню-бургер */ }
+}
+@media (max-width: 600px) {
+    .hero h1 { font-size: 2.8rem; }
+    .lore-stats { flex-direction: column; }
+}

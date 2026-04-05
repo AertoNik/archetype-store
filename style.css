@@ -3,7 +3,22 @@
     --bg-color: #030305;
     --text-main: #ededed;
     --text-muted: #8a8a93;
+    --accent-color: #ffffff; /* Главный цвет по умолчанию */
     --accent-glow: rgba(255, 255, 255, 0.15);
+}
+
+/* 🟢 ТЕМА: Секретный Агент / Кибер */
+.theme-cyber {
+    --bg-color: #050a08;
+    --accent-color: #00ffaa;
+    --accent-glow: rgba(0, 255, 170, 0.2);
+}
+
+/* 🟡 ТЕМА: Темное Фэнтези / RPG */
+.theme-rpg {
+    --bg-color: #0a0705;
+    --accent-color: #d4af37;
+    --accent-glow: rgba(212, 175, 55, 0.15);
 }
 
 * {
@@ -19,6 +34,7 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.5s ease; /* Плавное переключение фона */
 }
 
 /* Заголовки в стиле Tech/Y2K */
@@ -137,10 +153,10 @@ h1, h2, h3, .logo, .stat-number {
     pointer-events: none;
 }
 
-/* Кнопки */
-.btn-primary {
+/* Кнопки (Обновлено для Хамелеона) */
+.btn-primary, .btn-buy {
     text-decoration: none;
-    background: #fff;
+    background: var(--accent-color);
     color: #000;
     padding: 1rem 2.5rem;
     border-radius: 4px;
@@ -148,11 +164,18 @@ h1, h2, h3, .logo, .stat-number {
     font-family: 'Space Grotesk', sans-serif;
     transition: all 0.3s ease;
     display: inline-block;
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
-.btn-primary:hover {
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+.btn-primary:hover, .btn-buy:hover {
+    box-shadow: 0 0 25px var(--accent-glow);
     transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn-buy {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
 }
 
 /* Блок ЛОРА / Философии */
@@ -238,7 +261,6 @@ h1, h2, h3, .logo, .stat-number {
     position: relative;
 }
 
-/* Невидимая рамка, которая загорается при наведении */
 .card::after {
     content: '';
     position: absolute;
@@ -254,9 +276,8 @@ h1, h2, h3, .logo, .stat-number {
     background: #111114;
 }
 
-/* Специфичные эффекты при наведении для разных архетипов */
-.card.theme-rpg:hover::after { border-color: rgba(212, 175, 55, 0.4); /* Золотоватый отблеск */ }
-.card.theme-cyber:hover::after { border-color: rgba(0, 255, 170, 0.3); /* Кибер-зеленый отблеск */ }
+.card.theme-rpg:hover::after { border-color: rgba(212, 175, 55, 0.4); }
+.card.theme-cyber:hover::after { border-color: rgba(0, 255, 170, 0.3); }
 
 .card-image {
     height: 240px;
@@ -305,19 +326,6 @@ h1, h2, h3, .logo, .stat-number {
     font-size: 1.4rem;
 }
 
-.btn-buy {
-    text-decoration: none;
-    color: #fff;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: opacity 0.3s;
-}
-
-.btn-buy:hover {
-    opacity: 0.7;
-}
-
 /* Подвал */
 footer {
     padding: 4rem 5%;
@@ -343,7 +351,7 @@ footer p { color: var(--text-muted); font-size: 0.9rem; }
     .hero h1 { font-size: 3.5rem; }
     .philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
     .lore-stats { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-left: 0; padding-top: 2rem; flex-direction: row; justify-content: space-between; }
-    .nav-links { display: none; /* Для телефонов позже сделаем меню-бургер */ }
+    .nav-links { display: none; }
 }
 @media (max-width: 600px) {
     .hero h1 { font-size: 2.8rem; }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSBR Operating System | Archetype Terminal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --accent-color: #00ffaa; --accent-glow: rgba(0, 255, 170, 0.2); }
+        body { font-family: 'Inter', sans-serif; background-color: #030504; }
+        .terminal-container { max-width: 1100px; margin: 0 auto; padding: 8rem 5% 5rem; }
+        
+        /* Заголовок в стиле Спецслужб */
+        .system-header { border-left: 3px solid var(--accent-color); padding-left: 2rem; margin-bottom: 5rem; }
+        .system-header h1 { font-family: 'Space Grotesk'; font-size: 4.5rem; letter-spacing: -2px; line-height: 0.9; margin: 1rem 0; }
+        .system-status { font-family: 'JetBrains Mono'; color: var(--accent-color); font-size: 0.9rem; text-transform: uppercase; }
+
+        /* Сетка модулей */
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 6rem; }
+        .module-card { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            padding: 2rem; 
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .module-card:hover { border-color: var(--accent-glow); background: rgba(0, 255, 170, 0.03); transform: translateY(-5px); }
+        .module-card h3 { font-family: 'Space Grotesk'; font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent-color); }
+        .module-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+        .module-tag { font-family: 'JetBrains Mono'; font-size: 0.7rem; opacity: 0.4; display: block; margin-bottom: 0.5rem; }
+
+        /* Философия Medbay */
+        .medbay-section { 
+            background: linear-gradient(90deg, rgba(0,255,170,0.05) 0%, transparent 100%); 
+            padding: 4rem; border: 1px solid var(--accent-glow); margin: 6rem 0; 
+        }
+        .medbay-content h2 { font-family: 'Space Grotesk'; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        
+        /* Кнопка покупки */
+        .cta-box { text-align: center; background: #00ffaa; color: #000; padding: 4rem; border-radius: 4px; margin-top: 4rem; box-shadow: 0 0 50px rgba(0, 255, 170, 0.2); }
+        .cta-box h2 { font-family: 'Space Grotesk'; font-size: 2rem; margin-bottom: 1rem; }
+        .btn-black { background: #000; color: #00ffaa; padding: 1rem 3rem; text-decoration: none; font-weight: bold; font-family: 'Space Grotesk'; display: inline-block; margin-top: 1.5rem; transition: 0.3s; }
+        .btn-black:hover { opacity: 0.8; transform: scale(1.05); }
+    </style>
+</head>
+
+<body class="theme-cyber">
+    <div class="noise"></div>
+
+    <nav class="glass-nav">
+        <div class="logo">ARCHETYPE.</div>
+        <ul class="nav-links">
+            <li><a href="index.html">← RETURN_TO_HUB</a></li>
+        </ul>
+    </nav>
+
+    <div class="terminal-container">
+        <header class="system-header">
+            <span class="system-status">System Status: v26.1 Online // SECURE_ACCESS</span>
+            <h1>NSBR:<br>Realism Engine</h1>
+            <p style="max-width: 600px; color: var(--text-muted); font-size: 1.2rem; margin-top: 1.5rem;">
+                The high-tech life manager that turns your discipline into a tactical operation. 
+                Built on Google Sheets + Apps Script for Agents fighting the Syndicate.
+            </p>
+        </header>
+
+        <section class="module-grid">
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_01 ]</span>
+                <h3>START_TERMINAL</h3>
+                <p>Security gateway with password protection. Displays your current streak, rank, and daily radio transmissions.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_02 ]</span>
+                <h3>COMMAND_HQ</h3>
+                <p>Track your rank from Cadet to Director. Manage DEFCON levels and activate critical "Ghost" or "Medbay" protocols.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_03 ]</span>
+                <h3>DAILY_OPS</h3>
+                <p>Your tactical front line. Scripts generate your mission list at midnight based on your master schedule. XP is earned instantly.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_04 ]</span>
+                <h3>GLOBAL_MISSIONS</h3>
+                <p>Story-driven operations. Complete 3 tactical tasks to damage the Syndicate boss and earn high-value rewards.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_05 ]</span>
+                <h3>WAR_ROOM</h3>
+                <p>Tactical HUD visualizing your war against the Syndicate. See real-time progress on dismantling enemy infrastructure.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_06 ]</span>
+                <h3>SKILL_MATRIX</h3>
+                <p>14 core attributes (Strength, English, Literature). Beware of "Atrophy" — skills degrade if not trained for 7 days.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_07 ]</span>
+                <h3>OFFSHORE_BANK</h3>
+                <p>Complete financial logging. Earn Dm currency to unlock real-life rewards or trigger system protection protocols.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_08 ]</span>
+                <h3>SHADOW_ARENA</h3>
+                <p>AI-simulated combat against rival agents. Victory requires passing the "Physical Protocol" before the final calculation.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-tag">[ MODULE_09 ]</span>
+                <h3>INTEL_ARCHIVE</h3>
+                <p>Database of your weekly reflections (Interrogations) and encrypted motivational transmissions.</p>
+            </div>
+        </section>
+
+        <section class="medbay-section">
+            <div class="medbay-content">
+                <span class="system-status" style="color: #fff;">SPECIAL PATCH V26.1</span>
+                <h2>The Medbay Philosophy</h2>
+                <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 800px;">
+                    We recognize that an Agent is human, not a machine. Activating the Medbay Protocol transforms the aggressive tracker into a supportive assistant, replacing combat missions with recovery tasks while preserving your progress.
+                </p>
+            </div>
+        </section>
+
+        <div class="cta-box">
+            <h2>READY TO INITIALIZE NSBR?</h2>
+            <p>Deploy the most advanced RPG life-management system ever built for Google Sheets.</p>
+            <a href="#" class="btn-black">PURCHASE PROTOCOL — $49</a>
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; padding: 4rem; opacity: 0.4; font-family: 'JetBrains Mono'; font-size: 0.8rem;">
+            [ ARCHETYPE_HQ // NO_STEPS_BACK_REALISM ]
+        </p>
+    </footer>
+</body>
+</html>
